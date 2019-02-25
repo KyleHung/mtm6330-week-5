@@ -3,10 +3,11 @@
   Defining a mixin to add a feel of depth to the elements
   We are setting a default value of the $height to high using $height:high
 */
+
+// IF YOU WANNA ADD THINGS TO YOUR CODE JUST KEEP USING @mixin AND HAVE YOU STATEMENTS AND PLUG THEM IN YOUR OTHER CODE USING @include
 @mixin liftUp($height:high){
   // adding an if and esle if statement to check the value of the argument
   @if $height == high {
-    // The box-shadow property will be automatically prefixed with -webkit- in our final minified file by autoprefixer module
     box-shadow: 1px 2px 5px 2px black;
   } @else if $height == higher {
     box-shadow: 2px 4px 10px 2px black;
@@ -65,6 +66,10 @@ nav{
   @extend .shape;
   // Using the @include variable we are calling the mixin and supplying the value of the argument as high
   @include liftUp(high);
+  &:hover{
+    @include liftUp(highest);
+    transition: 0.3s;
+  }
 }
 .shape2{
   @extend .shape;
@@ -73,4 +78,26 @@ nav{
 .shape3{
   @extend .shape;
   @include liftUp(highest);
+}
+nav{
+  $text-font-size: 20px;
+  font-size: $text-font-size;
+  background-color: $clouds;
+  ul{
+    li{
+      display: inline-block;;
+      a{
+        display: block;
+        padding: $text-font-size; //or 20px
+        color: $asphalt;
+        border-#{$nav-border-side}: 1px solid $asphalt;
+        transition: all 300ms ease-in-out;
+        &:hover, &:focus{
+          color: $clouds;
+          background-color: $asphalt;
+          border: 1px solid white;
+        }
+      }
+    }
+  }
 }
